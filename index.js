@@ -22,6 +22,7 @@ const client = new discord.Client({ partials: ["CHANNEL"], intents: [
     ] 
 });
 const fs = require('fs');
+const connectDB = require('./Database/Connection');
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 const eventFiles = fs.readdirSync('./events/').filter(file => file.endsWith('.js'));
 
@@ -65,6 +66,9 @@ const rest = new discord.REST({ version: '10' }).setToken(settings.TOKEN);
 		console.error(error);
 	}
 })();
+
+connectDB();
+
 client.on('ready', () => {
     console.log("ModBot is online!");
 });
@@ -97,6 +101,8 @@ client.on('interactionCreate', async interaction => {
 
 client.on('messageCreate', async message => {
     if(message.author.bot) return;
+
+    client.events.get('XP_HANDLER').run(message);
 })
 
 client.login(settings.TOKEN);
