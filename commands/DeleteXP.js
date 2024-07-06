@@ -40,8 +40,11 @@ module.exports = {
         .setColor(settings.EMBED_COLOR)
         .setDescription(`Successfully removed ${xp_amount} from ${user}!`)
 
-        xp_amount = xp_amount * -1;
-        await XPOps.updateXPData(user.id, { $inc: { xp_amount } });
+        let userXPData = await XPOps.retrieveXPData(user.id);
+        let level = Math.floor((userXPData.xp_amount - xp_amount) / settings.XP_PER_LEVEL) 
+
+        xp_amount = -xp_amount;
+        await XPOps.updateXPData(user.id, { level, $inc: { xp_amount } });
         return interaction.reply({ embeds: [deleteXP_success] })
     }
 }

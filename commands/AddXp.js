@@ -40,7 +40,10 @@ module.exports = {
         .setColor(settings.EMBED_COLOR)
         .setDescription(`Successfully added ${xp_amount} to ${user}!`)
 
-        await XPOps.updateXPData(user.id, { $inc: { xp_amount } });
+        let userXPData = await XPOps.retrieveXPData(user.id);
+        let level = Math.floor((userXPData.xp_amount + xp_amount) / settings.XP_PER_LEVEL) 
+
+        await XPOps.updateXPData(user.id, { level, $inc: { xp_amount } });
         return interaction.reply({ embeds: [addXP_success] })
     }
 }

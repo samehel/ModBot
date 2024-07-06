@@ -30,6 +30,12 @@ const slashCommands = [
                 .setDescription('User to remove XP from')
                 .setRequired(true)
         ),
+    new SlashCommandBuilder()
+        .setName('leaderboard')
+        .setDescription('View the XP Leaderboard'),
+    new SlashCommandBuilder()
+        .setName('myprofile')
+        .setDescription('View your profile')
 ];
 
 module.exports = slashCommands;

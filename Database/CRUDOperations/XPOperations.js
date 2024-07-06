@@ -1,9 +1,9 @@
 const XPData = require('../Models/XP_DATA');
 
 // Create
-async function createXPData(user_id, xp_amount, multiplier) {
+async function createXPData(user_id, level, xp_amount, multiplier) {
     try {
-        const newXPData = new XPData({ user_id, xp_amount, multiplier });
+        const newXPData = new XPData({ user_id, level, xp_amount, multiplier });
         await newXPData.save();
         return newXPData;
     } catch (e) {
