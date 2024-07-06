@@ -16,7 +16,20 @@ const slashCommands = [
             user.setName('user')
                 .setDescription('User to add XP to')
                 .setRequired(true)
+        ),
+    new SlashCommandBuilder()
+        .setName('deletexp')
+        .setDescription('remove xp from a user')
+        .addIntegerOption(addxp => 
+            addxp.setName('amount')
+                 .setDescription('amount of xp you want to remove')
+                 .setRequired(true)
         )
+        .addUserOption(user => 
+            user.setName('user')
+                .setDescription('User to remove XP from')
+                .setRequired(true)
+        ),
 ];
 
 module.exports = slashCommands;
