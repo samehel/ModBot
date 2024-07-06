@@ -22,12 +22,13 @@ const client = new discord.Client({ partials: ["CHANNEL"], intents: [
     ] 
 });
 const fs = require('fs');
+const slashCommands = require('./Assets/SlashCommandBuilder');
+
 const connectDB = require('./Database/Connection');
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 const eventFiles = fs.readdirSync('./events/').filter(file => file.endsWith('.js'));
 
 const settings = process.env;
-const EMBED_COLOR = "#351c75"
 
 client.commands = new discord.Collection();
 client.events = new discord.Collection();
@@ -42,11 +43,7 @@ for(const file of eventFiles) {
     client.events.set(event.name, event);
 }
 
-const commands = [
-    new discord.SlashCommandBuilder()
-        .setName('ping')
-        .setDescription('ping the bot'),
-].map(
+const commands = slashCommands.map(
     command => command.toJSON()
 );
 
@@ -86,7 +83,7 @@ client.on('interactionCreate', async interaction => {
     if(!interaction.isChatInputCommand()) return;
 
     const err = new discord.EmbedBuilder()
-        .setColor(EMBED_COLOR)
+        .setColor(settings.EMBED_COLOR)
         .setDescription("This command does **not** exist. Use \`/help\` for the list of commands.")
 
     const { commandName } = interaction

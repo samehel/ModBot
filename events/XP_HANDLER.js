@@ -18,7 +18,7 @@ module.exports = {
             // If they are boosting the server, give them the chance to have a higher mutliplier
             // randomly generated
             if(message.member.roles.cache.some(role => role.name === 'Server Booster')) {
-                let multiplier = Math.floor(Math.random() * (5.0 - 1.1 + 1) + 1.1);
+                let multiplier = Math.floor(Math.random() * (5.0 - 1.0 + 1) + 1.0);
                 return await XPOps.createXPData(user_id, 5 * multiplier, multiplier);
             }
 
