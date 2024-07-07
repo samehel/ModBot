@@ -16,25 +16,19 @@ module.exports = {
         const member = interaction.guild.members.cache.get(user.id);
         const reason = interaction.options.getString('reason') || "";
 
-        if(member) {
-            const banSuccess = new EmbedBuilder()
-            .setColor(settings.EMBED_COLOR)
-            .setTitle('Ban Hammer')
-            .setDescription(`${interaction.user} has banned ${user} (${user.id}) ${reason === "" ? "" : `for **${reason}**`}`)
-            .setThumbnail(client.user.displayAvatarURL())
-            .setTimestamp()
+        const banResult = new EmbedBuilder()
+        .setColor(settings.EMBED_COLOR)
+        .setTitle('Ban Hammer')
+        .setThumbnail(client.user.displayAvatarURL())
+        .setTimestamp()
 
+        if(member) {
+            banResult.setDescription(`${interaction.user} has banned ${user} (${user.id}) ${reason === "" ? "" : `for **${reason}**`}`)
             await member.ban({ reason: reason || "" });
-            return interaction.reply({ embeds: [banSuccess] })
         } else {
-            const banFailure = new EmbedBuilder()
-            .setColor(settings.EMBED_COLOR)
-            .setTitle('Ban Hammer')
-            .setDescription('The member you are trying to ban does not exist.')
-            .setThumbnail(client.user.displayAvatarURL())
-            .setTimestamp()
-            return interaction.reply({ embeds: [banFailure] })
+            banResult.setDescription('The member you are trying to ban does not exist.')
         }
 
+        return interaction.reply({ embeds: [banResult] })
     }
 }

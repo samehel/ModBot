@@ -51,6 +51,14 @@ const slashCommands = [
             reason.setName('reason')
                   .setDescription('The reason for banning them')
                   .setRequired(false)
+        ),
+    new SlashCommandBuilder()
+        .setName('unban')
+        .setDescription('Unban a user')
+        .addStringOption(userid => 
+            userid.setName('userid')
+                   .setDescription('ID of user you are trying to unban')
+                   .setRequired(true)
         )
 ];
 
