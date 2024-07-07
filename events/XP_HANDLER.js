@@ -2,7 +2,7 @@ const XPOps = require('../Database/CRUDOperations/XPOperations');
 
 module.exports = {
     name: 'XP_HANDLER',
-    run: async(message) => {
+    run: async(message, settings) => {
 
         let user_id = message.author.id;
         let startingLevel = 0;
