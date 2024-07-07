@@ -5,15 +5,12 @@ module.exports = {
     run: async(message, settings) => {
 
         let user_id = message.author.id;
-        let startingLevel = 0;
-        let minimumMultiplier = 1.0;
-        let maximumMultiplier = 5.0;
 
         if(await XPOps.checkXPData(user_id)) {
             const userXPData = await XPOps.retrieveXPData(user_id);
 
             if(message.member.roles.cache.some(role => role.name === 'Server Booster') && userXPData.multiplier == 1.0) {
-                let multiplier = Math.floor(Math.random() * (maximumMultiplier - minimumMultiplier + 1) + minimumMultiplier);
+                let multiplier = Math.floor(Math.random() * (settings.maximumMultiplier - settings.minimumMultiplier + 1) + settings.minimumMultiplier);
                 await XPOps.updateXPData(user_id, { multiplier });
             }
             
@@ -23,8 +20,8 @@ module.exports = {
             // If they are boosting the server, give them the chance to have a higher mutliplier
             // randomly generated
             if(message.member.roles.cache.some(role => role.name === 'Server Booster')) {
-                let multiplier = Math.floor(Math.random() * (maximumMultiplier - minimumMultiplier + 1) + minimumMultiplier);
-                return await XPOps.createXPData(user_id, startingLevel, settings.XP_PER_MSG * multiplier, multiplier);
+                let multiplier = Math.floor(Math.random() * (settings.maximumMultiplier - settings.minimumMultiplier + 1) + settings.minimumMultiplier);
+                return await XPOps.createXPData(user_id, settings.startingLevel, settings.XP_PER_MSG * multiplier, multiplier);
             }
 
             await XPOps.createXPData(user_id);

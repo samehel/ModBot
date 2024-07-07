@@ -71,11 +71,11 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', async (guildMember) => {
-    client.channels.cache.get(JOINERS_AND_LEAVERS_LOG_CHANNEL).send(`${guildMember.user}(${guildMember.id}) has joined.`);
+    client.channels.cache.get(settings.JOINERS_AND_LEAVERS_LOG_CHANNEL).send(`${guildMember.user}(${guildMember.id}) has joined.`);
 });
 
 client.on('guildMemberRemove', async (guildMember) => {
-    client.channels.cache.get(JOINERS_AND_LEAVERS_LOG_CHANNEL).send(`${guildMember.user}(${guildMember.id}) has left.`);
+    client.channels.cache.get(settings.JOINERS_AND_LEAVERS_LOG_CHANNEL).send(`${guildMember.user}(${guildMember.id}) has left.`);
 });
 
 client.on('interactionCreate', async interaction => {
@@ -99,7 +99,7 @@ client.on('interactionCreate', async interaction => {
 client.on('messageCreate', async message => {
     if(message.author.bot) return;
 
-    client.events.get('XP_HANDLER').run(message);
+    client.events.get('XP_HANDLER').run(message, settings);
 })
 
 client.login(settings.TOKEN);

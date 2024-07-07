@@ -3,13 +3,13 @@ const { SlashCommandBuilder } = require('discord.js');
 const slashCommands = [
     new SlashCommandBuilder()
         .setName('ping')
-        .setDescription('ping the bot'),
+        .setDescription('Ping the bot'),
     new SlashCommandBuilder()
         .setName('addxp')
-        .setDescription('add xp to a user')
+        .setDescription('Add xp to a user')
         .addIntegerOption(addxp => 
             addxp.setName('amount')
-                 .setDescription('amount of xp you want to add')
+                 .setDescription('Amount of xp you want to add')
                  .setRequired(true)
         )
         .addUserOption(user => 
@@ -22,7 +22,7 @@ const slashCommands = [
         .setDescription('remove xp from a user')
         .addIntegerOption(addxp => 
             addxp.setName('amount')
-                 .setDescription('amount of xp you want to remove')
+                 .setDescription('Amount of xp you want to remove')
                  .setRequired(true)
         )
         .addUserOption(user => 
@@ -38,7 +38,20 @@ const slashCommands = [
         .setDescription('View your profile'),
     new SlashCommandBuilder()
         .setName('help')
-        .setDescription('View a list of available commands')
+        .setDescription('View a list of available commands'),
+    new SlashCommandBuilder()
+        .setName('ban')
+        .setDescription('Ban a user')
+        .addUserOption(user => 
+            user.setName('user')
+                .setDescription('user you want to ban')
+                .setRequired(true)
+        )
+        .addStringOption(reason => 
+            reason.setName('reason')
+                  .setDescription('The reason for banning them')
+                  .setRequired(false)
+        )
 ];
 
 module.exports = slashCommands;
