@@ -59,7 +59,20 @@ const slashCommands = [
             userid.setName('userid')
                    .setDescription('ID of user you are trying to unban')
                    .setRequired(true)
+        ),
+    new SlashCommandBuilder()
+        .setName('kick')
+        .setDescription('kick a user')
+        .addUserOption(user => 
+            user.setName('user')
+                .setDescription('user you want to kick')
+                .setRequired(true)
         )
+        .addStringOption(reason => 
+            reason.setName('reason')
+                  .setDescription('The reason for kicking them')
+                  .setRequired(false)
+        ),
 ];
 
 module.exports = slashCommands;
