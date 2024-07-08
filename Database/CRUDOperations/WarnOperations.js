@@ -54,8 +54,8 @@ async function updateWarnData(user_id, newWarnData) {
 // Delete
 async function deleteWarnData(user_id) {
     try {
-        const deleteXPData = await XPData.findOneAndDelete({ user_id });
-        return deleteXPData;
+        const deleteWarnData = await WarnData.findOneAndDelete({ user_id });
+        return deleteWarnData;
     } catch (e) {
         console.error(e);
         throw e;

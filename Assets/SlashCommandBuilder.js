@@ -102,6 +102,14 @@ const slashCommands = [
                   .setDescription('The reason for warning them')
                   .setRequired(true)
         ),
+    new SlashCommandBuilder()
+        .setName('delwarn')
+        .setDescription('delete a warning from a user')
+        .addUserOption(user => 
+            user.setName('user')
+                .setDescription('user you want to warn')
+                .setRequired(true)
+        ),
 ];
 
 module.exports = slashCommands;
