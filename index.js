@@ -100,6 +100,7 @@ client.on('messageCreate', async message => {
     if(message.author.bot) return;
 
     client.events.get('XP_HANDLER').run(message, settings);
+    client.events.get('PROFANITY_HANDLER').run(message, settings);
 })
 
 client.login(settings.TOKEN);
