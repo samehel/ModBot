@@ -88,7 +88,20 @@ const slashCommands = [
             user.setName('user')
                 .setDescription('user you want to unmute')
                 .setRequired(true)
+        ),
+    new SlashCommandBuilder()
+        .setName('warn')
+        .setDescription('warn a user')
+        .addUserOption(user => 
+            user.setName('user')
+                .setDescription('user you want to warn')
+                .setRequired(true)
         )
+        .addStringOption(reason => 
+            reason.setName('reason')
+                  .setDescription('The reason for warning them')
+                  .setRequired(true)
+        ),
 ];
 
 module.exports = slashCommands;

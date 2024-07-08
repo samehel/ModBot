@@ -52,7 +52,7 @@ async function updateXPData(user_id, newXPData) {
 }
 
 // Delete
-async function deleteXPDate(user_id) {
+async function deleteXPData(user_id) {
     try {
         const deleteXPData = await XPData.findOneAndDelete({ user_id });
         return deleteXPData;
@@ -68,5 +68,5 @@ module.exports = {
     retrieveAllXPData,
     checkXPData,
     updateXPData,
-    deleteXPDate
+    deleteXPData
 }
