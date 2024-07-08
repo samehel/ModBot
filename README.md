@@ -1,6 +1,6 @@
 # ModBot - A Discord Bot for Server Management
 
-ModBot is a Discord bot designed for moderation and utility purposes.
+ModBot is a Quick Discord bot designed for moderation and utility purposes.
 
 ## Technologies
 
