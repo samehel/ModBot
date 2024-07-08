@@ -110,6 +110,14 @@ const slashCommands = [
                 .setDescription('user you want to warn')
                 .setRequired(true)
         ),
+    new SlashCommandBuilder()
+        .setName('warnings')
+        .setDescription('view all warnings or a user\'s warnings')
+        .addUserOption(user => 
+            user.setName('user')
+                .setDescription('user you want to warn')
+                .setRequired(false)
+        ),
 ];
 
 module.exports = slashCommands;
