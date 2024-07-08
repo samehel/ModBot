@@ -5,8 +5,14 @@ module.exports = {
     name: 'myprofile',
     run: async (client, interaction, settings) => {
 
-        const fetchedUser = await client.users.fetch(interaction.user.id);
+        const user = interaction.options.getUser('user');
+        let fetchedUser;
+        if(!user)
+            fetchedUser = await client.users.fetch(interaction.user.id);
+        else
+            fetchedUser = await client.users.fetch(user.id);
 
+        console.log(fetchedUser)
         const { globalName, username, id } = fetchedUser;
         const { level, xp_amount, multiplier } = await XPOps.retrieveXPData(id);
 
@@ -20,7 +26,7 @@ module.exports = {
         .addFields({ name: 'XP:', value: `${xp_amount}`, inline: false})
         .addFields({ name: 'multiplier:', value: `${multiplier}x`, inline: false})
         .addFields({ name: 'Is Server Boosting?', value: `${multiplier > 1 ? 'Yes' : 'No'}`, inline: false})
-        .setThumbnail(interaction.user.displayAvatarURL({dynamic : true}))
+        .setThumbnail(fetchedUser.displayAvatarURL({dynamic : true}))
         .setTimestamp();
 
         return interaction.reply({ embeds: [myProfile] });

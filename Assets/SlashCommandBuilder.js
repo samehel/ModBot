@@ -35,7 +35,12 @@ const slashCommands = [
         .setDescription('View the XP Leaderboard'),
     new SlashCommandBuilder()
         .setName('myprofile')
-        .setDescription('View your profile'),
+        .setDescription('View your profile')
+        .addUserOption(user => 
+            user.setName('user')
+                .setDescription('user you want to view the profile of')
+                .setRequired(false)
+        ),
     new SlashCommandBuilder()
         .setName('help')
         .setDescription('View a list of available commands'),
