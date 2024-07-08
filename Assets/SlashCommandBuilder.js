@@ -73,6 +73,22 @@ const slashCommands = [
                   .setDescription('The reason for kicking them')
                   .setRequired(false)
         ),
+    new SlashCommandBuilder()
+        .setName('mute')
+        .setDescription('mute a user')
+        .addUserOption(user => 
+            user.setName('user')
+                .setDescription('user you want to mute')
+                .setRequired(true)
+        ),
+    new SlashCommandBuilder()
+        .setName('unmute')
+        .setDescription('unmute a user')
+        .addUserOption(user => 
+            user.setName('user')
+                .setDescription('user you want to unmute')
+                .setRequired(true)
+        )
 ];
 
 module.exports = slashCommands;
