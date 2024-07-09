@@ -12,7 +12,8 @@ ModBot is a Quick Discord bot designed for moderation and utility purposes.
 ## Features
 
 - **Moderation Commands**: Kick, ban/unban, warn/unwarn, mute/unmute users.
-- **Utility Commands**: Ping, view user profiles, XP Leveling, help.
+- **Utility Commands**: Ping, view user profiles, Add/Remove XP, View XP Leaderboard, help.
+- **Events**: Profanity Detector, XP Handler
 
 ## Installation
 
